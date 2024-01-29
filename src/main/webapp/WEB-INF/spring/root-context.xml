@@ -10,7 +10,7 @@
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/toy2"/>
         <property name="username" value="root"/>
-        <property name="password" value="root1234!!"/>
+        <property name="password" value="rlawldud30811."/>
     </bean>
 
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"  destroy-method="close">
@@ -22,6 +22,6 @@
         <property name="mapperLocations" value="classpath:mybatis/mapper/**.xml" />
     </bean>
 
-    <mybatis-spring:scan base-package="com.example.repository"/>
+    <mybatis-spring:scan base-package="repository"/>
 
 </beans>
