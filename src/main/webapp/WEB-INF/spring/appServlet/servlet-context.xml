@@ -21,7 +21,7 @@
 <!--        <beans:property name="suffix" value=".jsp" />-->
 <!--    </beans:bean>-->
 
-    <context:component-scan base-package="com.example.controller" />
-    <context:component-scan base-package="com.example.service" />
+    <context:component-scan base-package="controller" />
+    <context:component-scan base-package="service" />
 
 </beans:beans>
