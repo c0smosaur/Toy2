@@ -22,4 +22,11 @@ public class TravelEntity {
   private LocalDateTime arrival;
   private String overseas;
 
+  public TravelEntity(String travelName, LocalDateTime departure,
+                      LocalDateTime arrival, String overseas){
+    this.travelName = travelName;
+    this.departure = departure;
+    this.arrival = arrival;
+    this.overseas = overseas;
+  }
 }
