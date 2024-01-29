@@ -22,4 +22,15 @@ public class TripEntity {
   private String endpoint;
   private LocalDateTime departureTime;
   private LocalDateTime arrivalTime;
+
+  public TripEntity(int travelId, String transportation,
+                    String startpoint, String endpoint,
+                    LocalDateTime departureTime, LocalDateTime arrivalTime){
+    this.travelId = travelId;
+    this.transportation = transportation;
+    this.startpoint = startpoint;
+    this.endpoint = endpoint;
+    this.departureTime = departureTime;
+    this.arrivalTime = arrivalTime;
+  }
 }

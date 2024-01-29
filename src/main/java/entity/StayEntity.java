@@ -20,4 +20,12 @@ public class StayEntity {
   private String address;
   private LocalDateTime arrival;
   private LocalDateTime departure;
+
+  public StayEntity(int tripId, String address,
+                    LocalDateTime departure, LocalDateTime arrival){
+    this.tripId = tripId;
+    this.address = address;
+    this.departure = departure;
+    this.arrival = arrival;
+  }
 }
