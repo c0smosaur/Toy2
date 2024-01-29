@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="repository.TripMapper">
+
+    <insert id="insertTrip" parameterType="entity.TripEntity">
+        INSERT INTO toy2.trip
+        (travel_id, transportation, startpoint, endpoint, departure_time, arrival_time)
+        VALUES
+        (#{travelId}, #{transportation}, #{startpoint}, #{endpoint}, #{departureTime}, #{arrivalTime})
+    </insert>
+
+    <!--    <select id="">-->
+
+    <!--    </select>-->
+
+    <!--    <update id="">-->
+
+    <!--    </update>-->
+
+    <delete id="deleteTrip">
+        DELETE FROM trip WHERE trip_id=#{id}
+    </delete>
+</mapper>
