@@ -19,8 +19,8 @@
 
 <!--    </update>-->
 
-<!--    <delete id="">-->
-
-<!--    </delete>-->
+    <delete id="deleteTravel">
+        DELETE FROM travel WHERE travel_id=#{travelId}
+    </delete>
 
 </mapper>

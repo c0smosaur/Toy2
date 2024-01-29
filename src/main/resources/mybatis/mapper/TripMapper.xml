@@ -19,7 +19,7 @@
 
 <!--    </update>-->
 
-<!--    <delete id="">-->
-
-<!--    </delete>-->
+    <delete id="deleteTrip">
+        DELETE FROM trip WHERE trip_id=#{tripId}
+    </delete>
 </mapper>
