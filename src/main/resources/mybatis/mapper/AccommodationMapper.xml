@@ -8,7 +8,7 @@
         INSERT INTO toy2.accommodation
         (trip_id, accommodation, check_in, check_out)
         VALUES
-        (#{trip_id}, #{accommodation}, #{check_in}, #{check_out})
+        (#{tripId}, #{accommodation}, #{checkIn}, #{checkOut})
     </insert>
 
 <!--    <select id="">-->

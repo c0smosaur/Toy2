@@ -8,7 +8,7 @@
     INSERT INTO toy2.trip
     (travel_id, transportation, startpoint, endpoint, departure_time, arrival_time)
     VALUES
-    (#{travel_id}, #{transportation}, #{startpoint}, #{endpoint}, #{departure_time}, #{arrival_time})
+    (#{travelId}, #{transportation}, #{startpoint}, #{endpoint}, #{departureTime}, #{arrivalTime})
 </insert>
 
 <!--    <select id="">-->
