@@ -1,5 +1,8 @@
 package model;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import entity.TripEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,13 +14,26 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class TripRequest {
 
-    private int tripId;
-    private String transportation;
-    private String startpoint;
-    private String endpoint;
-    private LocalDateTime departureTime;
-    private LocalDateTime arrivalTime;
+  private int tripId;
+  private int travelId;
+  private String transportation;
+  private String startpoint;
+  private String endpoint;
+  private LocalDateTime departureTime;
+  private LocalDateTime arrivalTime;
 
+  public TripEntity fromDTO(TripRequest request, int travelId){
+    return TripEntity.builder()
+            .tripId(request.tripId)
+            .travelId(travelId)
+            .transportation(request.transportation)
+            .startpoint(request.startpoint)
+            .endpoint(request.endpoint)
+            .departureTime(request.departureTime)
+            .arrivalTime(request.arrivalTime)
+            .build();
+  }
 }

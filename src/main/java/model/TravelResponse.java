@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class TravelResponse {
 
-    private int travelId;
-    private String travelName;
-    private LocalDateTime departure;
-    private LocalDateTime arrival;
-    private String overseas;
+  private int travelId;
+  private String travelName;
+  private LocalDateTime departure;
+  private LocalDateTime arrival;
+  private String overseas;
 }
