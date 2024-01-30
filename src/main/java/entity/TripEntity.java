@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,4 +23,5 @@ public class TripEntity {
   private String endpoint;
   private LocalDateTime departureTime;
   private LocalDateTime arrivalTime;
+  private List<TravelEntity> travel;
 }
