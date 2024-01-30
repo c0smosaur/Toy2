@@ -1,21 +1,12 @@
 package controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import entity.AccommodationEntity;
-import entity.StayEntity;
-import entity.TravelEntity;
-import entity.TripEntity;
-import lombok.extern.slf4j.Slf4j;
 import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
-import repository.AccommodationMapper;
-import repository.StayMapper;
-import repository.TravelMapper;
-import repository.TripMapper;
 import service.InsertService;
 
 import java.sql.SQLException;
@@ -107,5 +98,49 @@ public class InsertController {
             .resultMessage(HttpStatus.OK.getReasonPhrase())
             .data(obj)
             .build();
+  }
+
+  // 예외처리
+  @ExceptionHandler(value = {SQLException.class})
+  public ResponseEntity sqlException(SQLException e){
+    e.printStackTrace();
+    Result<Object> response = Result.builder()
+            .resultCode(""+ HttpStatus.BAD_REQUEST.value())
+            .resultMessage("SQL Exception occurred")
+            .build();
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+  }
+
+  // 날짜 데이터 잘못 입력시
+  @ExceptionHandler(value = {HttpMessageNotReadableException.class})
+  public ResponseEntity dateParsingException(HttpMessageNotReadableException e){
+    e.printStackTrace();
+    Result<Object> response = Result.builder()
+            .resultCode(""+ HttpStatus.BAD_REQUEST.value())
+            .resultMessage("Error occurred while parsing data")
+            .build();
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+  }
+
+  // 없는 데이터 참조 시
+  // 필수 데이터가 공백으로 들어올 시
+  @ExceptionHandler(value = {DataIntegrityViolationException.class})
+  public ResponseEntity dataIntegrityViolationException(DataIntegrityViolationException e){
+    e.printStackTrace();
+    Result<Object> response = Result.builder()
+            .resultCode(""+ HttpStatus.BAD_REQUEST.value())
+            .resultMessage("Data integrity is violated")
+            .build();
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+  }
+
+  @ExceptionHandler(value = {Exception.class})
+  public ResponseEntity exception(Exception e){
+    e.printStackTrace();
+    Result<Object> response = Result.builder()
+            .resultCode(""+ HttpStatus.INTERNAL_SERVER_ERROR.value())
+            .resultMessage(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase())
+            .build();
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
   }
 }
