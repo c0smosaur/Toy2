@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class AccommodationEntity {
+
   private int accommodationId;
   private int tripId;
   private String accommodation;

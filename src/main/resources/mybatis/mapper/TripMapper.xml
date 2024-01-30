@@ -4,20 +4,20 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="repository.TripMapper">
 
-<insert id="insertTrip" parameterType="entity.TripEntity">
-    INSERT INTO toy2.trip
-    (travel_id, transportation, startpoint, endpoint, departure_time, arrival_time)
-    VALUES
-    (#{travelId}, #{transportation}, #{startpoint}, #{endpoint}, #{departureTime}, #{arrivalTime})
-</insert>
+    <insert id="insertTrip" parameterType="entity.TripEntity">
+        INSERT INTO toy2.trip
+        (travel_id, transportation, startpoint, endpoint, departure_time, arrival_time)
+        VALUES
+        (#{travelId}, #{transportation}, #{startpoint}, #{endpoint}, #{departureTime}, #{arrivalTime})
+    </insert>
 
-<!--    <select id="">-->
+    <!--    <select id="">-->
 
-<!--    </select>-->
+    <!--    </select>-->
 
-<!--    <update id="">-->
+    <!--    <update id="">-->
 
-<!--    </update>-->
+    <!--    </update>-->
 
     <delete id="deleteTrip">
         DELETE FROM trip WHERE trip_id=#{tripId}

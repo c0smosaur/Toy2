@@ -11,13 +11,13 @@
         (#{tripId}, #{accommodation}, #{checkIn}, #{checkOut})
     </insert>
 
-<!--    <select id="">-->
+    <!--    <select id="">-->
 
-<!--    </select>-->
+    <!--    </select>-->
 
-<!--    <update id="">-->
+    <!--    <update id="">-->
 
-<!--    </update>-->
+    <!--    </update>-->
 
     <delete id="deleteAccommodation">
         DELETE FROM accommodation WHERE accommodation_id=#{accommodationId}

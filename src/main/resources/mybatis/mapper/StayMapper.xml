@@ -11,15 +11,15 @@
         (#{tripId}, #{address}, #{arrival}, #{departure})
     </insert>
 
-<!--    <select id="">-->
+    <!--    <select id="">-->
 
-<!--    </select>-->
+    <!--    </select>-->
 
-<!--    <update id="">-->
+    <!--    <update id="">-->
 
-<!--    </update>-->
+    <!--    </update>-->
 
     <delete id="deleteStay">
-        DELETE FROM stay WHERE stay_id=#{StayId}
+        DELETE FROM stay WHERE stay_id=#{stayId}
     </delete>
 </mapper>

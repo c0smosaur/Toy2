@@ -11,13 +11,13 @@
         (#{travelName}, #{departure}, #{arrival}, #{overseas})
     </insert>
 
-<!--    <select id="">-->
+    <!--    <select id="">-->
 
-<!--    </select>-->
+    <!--    </select>-->
 
-<!--    <update id="">-->
+    <!--    <update id="">-->
 
-<!--    </update>-->
+    <!--    </update>-->
 
     <delete id="deleteTravel">
         DELETE FROM travel WHERE travel_id=#{travelId}
