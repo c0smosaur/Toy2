@@ -20,6 +20,6 @@
     <!--    </update>-->
 
     <delete id="deleteAccommodation">
-        DELETE FROM accommodation WHERE accommodation_id=#{id}
+        DELETE FROM accommodation WHERE accommodation_id=#{accommodationId}
     </delete>
 </mapper>
