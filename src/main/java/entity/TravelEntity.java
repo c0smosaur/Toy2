@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -18,11 +19,14 @@ import java.util.List;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class TravelEntity {
 
-  private int travel_id;
-  private String travel_name;
+  @JsonProperty("travel_id")
+  private int travelId;
+
+  @JsonProperty("travel_name")
+  private String travelName;
   private LocalDateTime departure;
   private LocalDateTime arrival;
   private String overseas;
-  private List<TripEntity> trip;
+  private List<TripEntity> trip = new ArrayList<>();
 
 }
