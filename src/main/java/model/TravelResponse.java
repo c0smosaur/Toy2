@@ -24,23 +24,21 @@ public class TravelResponse {
     private List<TripResponse> trip;
 
     public static TravelResponse fromEntity(TravelEntity travelEntity) {
-//        if (travelEntity == null) {
-//            return null;
-//        }
 //
-//        List<TripResponse> tripResponses = Collections.emptyList();
-//        if (travelEntity.getTrip() != null) {
-//            tripResponses = travelEntity.getTrip().stream()
-//                    .map(TripResponse::fromEntity)
-//                    .collect(Collectors.toList());
-//        }
+        List<TripResponse> tripResponses = Collections.emptyList();
+        if (travelEntity.getTrip() != null) {
+            tripResponses = travelEntity.getTrip().stream()
+                    .map(TripResponse::fromEntity)
+                    .collect(Collectors.toList());
+        }
 
         return TravelResponse.builder()
-                .travelId(travelEntity.getTravelId())
-                .travelName(travelEntity.getTravelName())
+                .travelId(travelEntity.getTravel_id())
+                .travelName(travelEntity.getTravel_name())
+                .departure(travelEntity.getDeparture())
                 .arrival(travelEntity.getArrival())
                 .overseas(travelEntity.getOverseas())
-//                .trip(tripResponses)
+                .trip(tripResponses)
                 .build();
     }
 }

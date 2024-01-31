@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import entity.TripEntity;
 import lombok.*;
 

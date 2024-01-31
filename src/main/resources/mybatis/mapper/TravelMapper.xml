@@ -12,12 +12,31 @@
     </insert>
 
     <!--    <select id="">-->
-    <select id="getAllTravel" resultType="entity.TravelEntity">
+    <select id="getAllTravel" resultMap="travelWithTripResultMap">
         SELECT
-        tv.*
+        tv.*,
+        t.*
         FROM
         travel tv
+        LEFT JOIN trip t ON tv.travel_id = t.travel_id;
     </select>
+
+    <resultMap id="travelWithTripResultMap" type="entity.TravelEntity">
+        <id property="travel_id" column="travel_id"/>
+        <result property="travel_name" column="travel_name"/>
+        <result property="departure" column="departure"/>
+        <result property="arrival" column="arrival"/>
+        <result property="overseas" column="overseas"/>
+
+        <collection property="trip" ofType="entity.TripEntity">
+            <id property="tripId" column="trip_id"/>
+            <result property="transportation" column="transportation"/>
+            <result property="startpoint" column="startpoint"/>
+            <result property="endpoint" column="endpoint"/>
+            <result property="departureTime" column="departure_time"/>
+            <result property="arrivalTime" column="arrival_time"/>
+        </collection>
+    </resultMap>
 
     <!--    </select>-->
 
