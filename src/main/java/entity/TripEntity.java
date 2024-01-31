@@ -23,5 +23,4 @@ public class TripEntity {
   private String endpoint;
   private LocalDateTime departureTime;
   private LocalDateTime arrivalTime;
-  private List<TravelEntity> travel;
 }

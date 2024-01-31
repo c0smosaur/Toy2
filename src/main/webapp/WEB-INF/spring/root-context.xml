@@ -8,9 +8,9 @@
 
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/toy2"/>
-        <property name="username" value=""/>
-        <property name="password" value=""/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/mydb"/>
+        <property name="username" value="root"/>
+        <property name="password" value="alrtm1324!"/>
     </bean>
 
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"  destroy-method="close">
