@@ -12,6 +12,12 @@
     </insert>
 
     <!--    <select id="">-->
+    <select id="getAllTravel" resultType="entity.TravelEntity">
+        SELECT
+        tv.*
+        FROM
+        travel tv
+    </select>
 
     <!--    </select>-->
 

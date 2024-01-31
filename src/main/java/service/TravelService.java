@@ -1,11 +1,19 @@
 package service;
 
+import entity.TravelEntity;
+import entity.TripEntity;
+import model.TravelResponse;
+import model.TripResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import repository.AccommodationMapper;
 import repository.StayMapper;
 import repository.TravelMapper;
 import repository.TripMapper;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TravelService {
@@ -19,6 +27,16 @@ public class TravelService {
     @Autowired
     private TripMapper tripMapper;
 
+    @Transactional
+    public List<TravelResponse> getAllTravel() {
+
+        List<TravelEntity> allTrip = travelMapper.getAllTravel();
+
+        System.out.println("allTrip = " + allTrip);
+
+        return allTrip.stream().map(TravelResponse::fromEntity).collect(Collectors.toList());
+    }
+
     public void deleteTravel(int travelId) {
     }
 
@@ -30,4 +48,5 @@ public class TravelService {
 
     public void deleteStay(int stayId) {
     }
+
 }
