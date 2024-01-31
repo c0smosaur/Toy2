@@ -21,4 +21,5 @@ public class StayEntity {
   private String address;
   private LocalDateTime arrival;
   private LocalDateTime departure;
+
 }

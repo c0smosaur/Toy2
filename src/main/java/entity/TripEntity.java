@@ -17,7 +17,7 @@ import java.util.List;
 public class TripEntity {
 
   private int tripId;
-  private int travelId;
+  private int travel_id;
   private String transportation;
   private String startpoint;
   private String endpoint;

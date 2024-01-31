@@ -18,13 +18,11 @@ import java.util.List;
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class TravelEntity {
 
-  @JsonProperty("travel_id")
-  private int travelId;
-
-  @JsonProperty("travel_name")
-  private String travelName;
+  private int travel_id;
+  private String travel_name;
   private LocalDateTime departure;
   private LocalDateTime arrival;
   private String overseas;
+  private List<TripEntity> trip;
 
 }
