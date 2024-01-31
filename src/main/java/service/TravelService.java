@@ -27,14 +27,21 @@ public class TravelService {
     @Autowired
     private TripMapper tripMapper;
 
+    // TODO : 전역 예외처리 Optional 활용해 추가 예정
     @Transactional
-    public List<TravelResponse> getAllTravel() {
+    public List<TravelEntity> getAllTravel() {
 
         List<TravelEntity> allTrip = travelMapper.getAllTravel();
 
         System.out.println("allTrip = " + allTrip);
 
-        return allTrip.stream().map(TravelResponse::fromEntity).collect(Collectors.toList());
+        return allTrip;
+    }
+
+    @Transactional
+    public TravelEntity getTravelById(Integer travelId) {
+
+        return travelMapper.getTravelById(travelId);
     }
 
     public void deleteTravel(int travelId) {

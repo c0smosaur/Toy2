@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import model.TravelResponse;
 import model.TripResponse;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import service.TravelService;
 
 import java.util.List;
@@ -29,9 +27,18 @@ public class SelectController {
     public List<TravelResponse> getAllTravel() {
 
         log.info("select getAllTrip");
-        System.out.println("select getAllTrip");
 
+        return travelService.getAllTravel()
+                .stream()
+                .map(TravelResponse::fromEntity)
+                .collect(Collectors.toList());
+    }
 
-        return travelService.getAllTravel();
+    @GetMapping("/travel/{travelId}")
+    public TravelResponse getTravelById(@PathVariable("travelId")Integer travelId) {
+
+        log.info("select getTravelById");
+
+        return TravelResponse.fromEntity(travelService.getTravelById(travelId));
     }
 }

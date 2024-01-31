@@ -5,6 +5,7 @@ import entity.TripEntity;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,24 +22,24 @@ public class TravelResponse {
     private LocalDateTime departure;
     private LocalDateTime arrival;
     private String overseas;
-    private List<TripResponse> trip;
+    private List<TripResponse> trip = new ArrayList<>();
 
     public static TravelResponse fromEntity(TravelEntity travelEntity) {
 //
-        List<TripResponse> tripResponses = Collections.emptyList();
+        List<TripResponse> responses = Collections.emptyList();
         if (travelEntity.getTrip() != null) {
-            tripResponses = travelEntity.getTrip().stream()
+            responses = travelEntity.getTrip().stream()
                     .map(TripResponse::fromEntity)
                     .collect(Collectors.toList());
         }
 
         return TravelResponse.builder()
-                .travelId(travelEntity.getTravel_id())
-                .travelName(travelEntity.getTravel_name())
+                .travelId(travelEntity.getTravelId())
+                .travelName(travelEntity.getTravelName())
                 .departure(travelEntity.getDeparture())
                 .arrival(travelEntity.getArrival())
                 .overseas(travelEntity.getOverseas())
-                .trip(tripResponses)
+                .trip(responses)
                 .build();
     }
 }

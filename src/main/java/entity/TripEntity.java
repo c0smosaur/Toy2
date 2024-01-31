@@ -23,4 +23,6 @@ public class TripEntity {
   private String endpoint;
   private LocalDateTime departureTime;
   private LocalDateTime arrivalTime;
+  private StayEntity stay;
+  private List<AccommodationEntity> accommodation;
 }
