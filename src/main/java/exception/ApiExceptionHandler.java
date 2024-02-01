@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.sql.SQLException;
 
 @Slf4j
-@RestControllerAdvice(basePackages = {"controller"})
+//@RestControllerAdvice(basePackages = {"controller"})
+@RestControllerAdvice
 public class ApiExceptionHandler {
 
     // 예외처리
@@ -39,8 +40,8 @@ public class ApiExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
-    // 없는 데이터 참조 시
-    // 필수 데이터가 공백으로 들어올 시
+    // 없는 데이터 참조하여 입력 시
+    // 필수 데이터가 공백으로 입력될 시
     @ExceptionHandler(value = {DataIntegrityViolationException.class})
     public ResponseEntity dataIntegrityViolationExceptionHandler(DataIntegrityViolationException e){
 //        log.error("Data Integrity Violation Exception Handler : ");
@@ -49,6 +50,18 @@ public class ApiExceptionHandler {
                 .resultCode(""+ HttpStatus.BAD_REQUEST.value())
                 .resultMessage("Data integrity is violated")
                 .build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    // 없는 여행 정보를 조회할 때
+    @ExceptionHandler(value = {NullPointerException.class})
+    public ResponseEntity nullPointerExceptionHandler(NullPointerException e){
+//        log.error("Null Pointer Exception Handler : ");
+    e.printStackTrace();
+    Result<Object> response = Result.builder()
+            .resultCode(""+ HttpStatus.BAD_REQUEST.value())
+            .resultMessage("Data doesn't exist")
+            .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
