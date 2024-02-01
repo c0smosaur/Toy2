@@ -2,6 +2,7 @@ package exception;
 
 import lombok.extern.slf4j.Slf4j;
 import model.Result;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.sql.SQLException;
 
 @Slf4j
-@RestControllerAdvice(basePackages = {"controller"})
+@RestControllerAdvice
 public class ApiExceptionHandler {
 
     // 예외처리
@@ -47,7 +48,7 @@ public class ApiExceptionHandler {
         e.printStackTrace();
         Result<Object> response = Result.builder()
                 .resultCode(""+ HttpStatus.BAD_REQUEST.value())
-                .resultMessage("Data integrity is violated")
+                .resultMessage("에러발생")
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }

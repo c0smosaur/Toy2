@@ -12,7 +12,10 @@
     </insert>
 
     <!--    <select id="">-->
+<!--    <select id="getAllTrip" resultMap="">-->
 
+
+<!--    </select>-->
     <!--    </select>-->
 
     <!--    <update id="">-->

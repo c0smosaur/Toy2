@@ -22,6 +22,7 @@
         LEFT JOIN trip t ON tv.travel_id = t.travel_id
         LEFT JOIN stay s ON t.trip_id = s.trip_id
         LEFT JOIN accommodation ac ON t.trip_id = ac.trip_id
+        ORDER BY tv.travel_id, ac.accommodation_id;
     </select>
 
     <select id="getTravelById" parameterType="entity.TravelEntity" resultMap="travelWithTripResultMap">
