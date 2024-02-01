@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.sql.SQLException;
 
 @Slf4j
-//@RestControllerAdvice(basePackages = {"controller"})
 @RestControllerAdvice
 public class ApiExceptionHandler {
 

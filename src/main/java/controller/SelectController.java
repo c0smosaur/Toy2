@@ -3,9 +3,8 @@ package controller;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import model.TravelResponse;
-import model.TripResponse;
 import org.springframework.web.bind.annotation.*;
-import service.TravelService;
+import service.SelectService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class SelectController {
 
-    private TravelService travelService;
+    private SelectService selectService;
 
     @GetMapping("")
     public String test() {
@@ -28,7 +27,7 @@ public class SelectController {
 
         log.info("select getAllTrip");
 
-        return travelService.getAllTravel()
+        return selectService.getAllTravel()
                 .stream()
                 .map(TravelResponse::fromEntity)
                 .collect(Collectors.toList());
@@ -39,6 +38,6 @@ public class SelectController {
 
         log.info("select getTravelById");
 
-        return TravelResponse.fromEntity(travelService.getTravelById(travelId));
+        return TravelResponse.fromEntity(selectService.getTravelById(travelId));
     }
 }

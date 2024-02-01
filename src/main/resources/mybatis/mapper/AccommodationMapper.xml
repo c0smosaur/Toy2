@@ -11,10 +11,6 @@
         (#{tripId}, #{accommodation}, #{checkIn}, #{checkOut})
     </insert>
 
-    <!--    <select id="">-->
-
-    <!--    </select>-->
-
     <update id="updateAccommodation" parameterType="map">
         update toy2.accommodation
         SET

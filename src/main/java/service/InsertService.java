@@ -28,27 +28,22 @@ public class InsertService {
   private AccommodationMapper accMapper;
   @Autowired
   private StayMapper stayMapper;
-  ObjectMapper objectMapper = new ObjectMapper();
 
   public int insertTravel(TravelRequest request) throws Exception{
-    objectMapper.registerModule(new JavaTimeModule());
     TravelEntity entity = request.fromDTO(request);
     return travelMapper.insertTravel(entity);
   }
 
   public int insertTrip(TripRequest request, int travelId) throws Exception{
-    objectMapper.registerModule(new JavaTimeModule());
     TripEntity entity = request.fromDTO(request, travelId);
     return tripMapper.insertTrip(entity);
   }
 
   public int insertAccommodation(AccommodationRequest request, int tripId) throws Exception{
-    objectMapper.registerModule(new JavaTimeModule());
     AccommodationEntity entity = request.fromDTO(request, tripId);
     return accMapper.insertAccommodation(entity);
   }
   public int insertStay(StayRequest request, int tripId) throws Exception{
-    objectMapper.registerModule(new JavaTimeModule());
     StayEntity entity = request.fromDTO(request, tripId);
     return stayMapper.insertStay(entity);
   }

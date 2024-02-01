@@ -11,10 +11,6 @@
         (#{travel_id}, #{transportation}, #{startpoint}, #{endpoint}, #{departureTime}, #{arrivalTime})
     </insert>
 
-    <!--    <select id="">-->
-
-    <!--    </select>-->
-
     <update id="updateTrip" parameterType="map">
         UPDATE toy2.trip
         SET
