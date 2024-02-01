@@ -11,7 +11,6 @@
         (#{travelName}, #{departure}, #{arrival}, #{overseas})
     </insert>
 
-    <!--    <select id="">-->
     <select id="getAllTravel" resultMap="travelWithTripResultMap">
         SELECT
         tv.*,
@@ -66,7 +65,7 @@
 
         <collection property="trip" ofType="entity.TripEntity" resultMap="tripWithAccommodationAndStayResultMap"/>
     </resultMap>
-    
+
     <resultMap id="tripWithAccommodationAndStayResultMap" type="entity.TripEntity">
         <id property="tripId" column="trip_id"/>
         <result property="transportation" column="transportation"/>
@@ -74,7 +73,7 @@
         <result property="endpoint" column="endpoint"/>
         <result property="departureTime" column="departure_time"/>
         <result property="arrivalTime" column="arrival_time"/>
-        
+
         <association property="stay" javaType="entity.StayEntity" resultMap="stayResultMap"/>
         <collection property="accommodation" ofType="entity.AccommodationEntity" resultMap="accommodationResultMap"/>
     </resultMap>
@@ -92,8 +91,6 @@
         <result property="checkIn" column="check_in"/>
         <result property="checkOut" column="check_out"/>
     </resultMap>
-
-    <!--    </select>-->
 
     <!--    <update id="">-->
 

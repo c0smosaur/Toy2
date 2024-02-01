@@ -5,9 +5,8 @@ import entity.TravelEntity;
 import java.util.List;
 
 public interface TravelMapper {
+    public int insertTravel(TravelEntity travel);
     List<TravelEntity> getAllTravel();
-    public void deleteTravel(int id);
-
     TravelEntity getTravelById(Integer travelId);
-
+    public void deleteTravel(int id);
 }

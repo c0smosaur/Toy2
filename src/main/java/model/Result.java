@@ -11,7 +11,7 @@ import lombok.*;
 @Builder
 @JsonNaming(value= PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class Result<T> {
-    private String resultCode;
-    private String resultMessage;
-    private T data;
+  private String resultCode;
+  private String resultMessage;
+  private T data;
 }

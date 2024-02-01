@@ -1,10 +1,8 @@
 package repository;
 
-import entity.TravelEntity;
 import entity.TripEntity;
 
-import java.util.List;
-
 public interface TripMapper {
+  public int insertTrip(TripEntity trip);
   void deleteTrip(int id);
 }

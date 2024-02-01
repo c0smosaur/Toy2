@@ -1,32 +1,30 @@
-package entity;
+package model;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import entity.StayEntity;
 import lombok.*;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
 
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Builder
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class StayEntity {
-
+public class StayRequest {
   private int stayId;
-  private int tripId;
   private String address;
   private LocalDateTime arrival;
   private LocalDateTime departure;
 
-  public StayEntity(int tripId, String address,
-                    LocalDateTime departure, LocalDateTime arrival){
-    this.tripId = tripId;
-    this.address = address;
-    this.departure = departure;
-    this.arrival = arrival;
+  public StayEntity fromDTO(StayRequest request, int tripId){
+    return StayEntity.builder()
+            .stayId(request.stayId)
+            .tripId(tripId)
+            .address(request.address)
+            .arrival(request.arrival)
+            .departure(request.departure)
+            .build();
   }
 }

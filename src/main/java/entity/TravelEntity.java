@@ -29,4 +29,11 @@ public class TravelEntity {
   private String overseas;
   private List<TripEntity> trip = new ArrayList<>();
 
+  public TravelEntity(String travelName, LocalDateTime departure,
+                      LocalDateTime arrival, String overseas){
+    this.travelName = travelName;
+    this.departure = departure;
+    this.arrival = arrival;
+    this.overseas = overseas;
+  }
 }
