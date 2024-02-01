@@ -20,7 +20,6 @@ public class StayRequest {
 
   public StayEntity fromDTO(StayRequest request, int tripId){
     return StayEntity.builder()
-            .stayId(request.stayId)
             .tripId(tripId)
             .address(request.address)
             .arrival(request.arrival)

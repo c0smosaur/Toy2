@@ -26,7 +26,6 @@ public class TripRequest {
 
   public TripEntity fromDTO(TripRequest request, int travelId){
     return TripEntity.builder()
-            .tripId(request.tripId)
             .travel_id(travelId)
             .transportation(request.transportation)
             .startpoint(request.startpoint)

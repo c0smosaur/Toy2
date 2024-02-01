@@ -20,6 +20,6 @@
     <!--    </update>-->
 
     <delete id="deleteStay">
-        DELETE FROM stay WHERE stay_id=#{stayId}
+        DELETE FROM toy2.stay WHERE stay_id=#{stayId}
     </delete>
 </mapper>
