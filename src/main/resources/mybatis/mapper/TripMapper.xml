@@ -8,7 +8,7 @@
         INSERT INTO toy2.trip
         (travel_id, transportation, startpoint, endpoint, departure_time, arrival_time)
         VALUES
-        (#{travelId}, #{transportation}, #{startpoint}, #{endpoint}, #{departureTime}, #{arrivalTime})
+        (#{travel_id}, #{transportation}, #{startpoint}, #{endpoint}, #{departureTime}, #{arrivalTime})
     </insert>
 
     <!--    <select id="">-->
@@ -23,6 +23,6 @@
     <!--    </update>-->
 
     <delete id="deleteTrip">
-        DELETE FROM trip WHERE trip_id=#{tripId}
+        DELETE FROM toy2.trip WHERE trip_id=#{tripId}
     </delete>
 </mapper>
