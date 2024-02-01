@@ -2,10 +2,7 @@ package controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import repository.AccommodationMapper;
 import repository.StayMapper;
 import repository.TravelMapper;
@@ -14,7 +11,6 @@ import service.TravelService;
 
 @RestController
 public class DeleteController {
-
     @Autowired
     private TravelMapper travelMapper;
     @Autowired
@@ -29,26 +25,26 @@ public class DeleteController {
         return "Hello from delete!";
     }
 
-    @GetMapping("/delete/travel/{id}")
+    @DeleteMapping("/delete/travel/{id}")
     public String deleteTravel(@PathVariable int id) {
         travelMapper.deleteTravel(id);
-        return "Travel이 삭제되었습니다!";
+        return "Travel has been deleted!";
     }
 
-    @GetMapping("/delete/trip/{id}")
+    @DeleteMapping("/delete/trip/{id}")
     public String deleteTrip(@PathVariable int id) {
         tripMapper.deleteTrip(id);
-        return "Trip이 삭제되었습니다!";
+        return "Trip has been deleted!";
     }
-    @GetMapping("/delete/accommodation/{id}")
+    @DeleteMapping("/delete/accommodation/{id}")
     public String deleteAccommodation(@PathVariable int id) {
         accommodationMapper.deleteAccommodation(id);
-        return "Accommodation이 삭제되었습니다!";
+        return "Accommodation has been deleted!";
     }
 
-    @GetMapping("/delete/stay/{id}")
+    @DeleteMapping("/delete/stay/{id}")
     public String deleteStay(@PathVariable int id) {
         stayMapper.deleteStay(id);
-        return "Stay가 삭제되었습니다!";
+        return "Stay has been deleted!";
     }
 }

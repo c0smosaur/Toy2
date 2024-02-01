@@ -11,16 +11,93 @@
         (#{travelName}, #{departure}, #{arrival}, #{overseas})
     </insert>
 
-    <!--    <select id="">-->
+    <select id="getAllTravel" resultMap="travelWithTripResultMap">
+        SELECT
+        tv.*,
+        t.*,
+        s.*,
+        ac.*
+        FROM
+        toy2.travel tv
+        LEFT JOIN toy2.trip t ON tv.travel_id = t.travel_id
+        LEFT JOIN toy2.stay s ON t.trip_id = s.trip_id
+        LEFT JOIN toy2.accommodation ac ON t.trip_id = ac.trip_id
+    </select>
 
-    <!--    </select>-->
+    <select id="getTravelById" parameterType="entity.TravelEntity" resultMap="travelWithTripResultMap">
+        SELECT
+        tv.*,
+        t.*,
+        s.*,
+        ac.*
+        FROM
+        toy2.travel tv
+        LEFT JOIN toy2.trip t ON tv.travel_id = t.travel_id
+        LEFT JOIN toy2.stay s ON t.trip_id = s.trip_id
+        LEFT JOIN toy2.accommodation ac ON t.trip_id = ac.trip_id
+        WHERE tv.travel_id = #{travelId};
+    </select>
+
+<!--    <resultMap id="travelWithTripResultMapList" type="entity.TravelEntity">-->
+<!--        <id property="travelId" column="travel_id"/>-->
+<!--        <result property="travelName" column="travel_name"/>-->
+<!--        <result property="departure" column="departure"/>-->
+<!--        <result property="arrival" column="arrival"/>-->
+<!--        <result property="overseas" column="overseas"/>-->
+
+<!--        <collection property="trip" ofType="entity.TripEntity">-->
+<!--            <id property="tripId" column="trip_id"/>-->
+<!--            <result property="transportation" column="transportation"/>-->
+<!--            <result property="startpoint" column="startpoint"/>-->
+<!--            <result property="endpoint" column="endpoint"/>-->
+<!--            <result property="departureTime" column="departure_time"/>-->
+<!--            <result property="arrivalTime" column="arrival_time"/>-->
+<!--        </collection>-->
+<!--    </resultMap>-->
+
+    <!-- 3중 JOIN 관련 resultMap -->
+    <resultMap id="travelWithTripResultMap" type="entity.TravelEntity">
+        <id property="travelId" column="travel_id"/>
+        <result property="travelName" column="travel_name"/>
+        <result property="departure" column="departure"/>
+        <result property="arrival" column="arrival"/>
+        <result property="overseas" column="overseas"/>
+
+        <collection property="trip" ofType="entity.TripEntity" resultMap="tripWithAccommodationAndStayResultMap"/>
+    </resultMap>
+
+    <resultMap id="tripWithAccommodationAndStayResultMap" type="entity.TripEntity">
+        <id property="tripId" column="trip_id"/>
+        <result property="transportation" column="transportation"/>
+        <result property="startpoint" column="startpoint"/>
+        <result property="endpoint" column="endpoint"/>
+        <result property="departureTime" column="departure_time"/>
+        <result property="arrivalTime" column="arrival_time"/>
+
+        <association property="stay" javaType="entity.StayEntity" resultMap="stayResultMap"/>
+        <collection property="accommodation" ofType="entity.AccommodationEntity" resultMap="accommodationResultMap"/>
+    </resultMap>
+
+    <resultMap id="stayResultMap" type="entity.StayEntity">
+        <id property="stayId" column="stay_id"/>
+        <result property="address" column="address"/>
+        <result property="arrival" column="arrival"/>
+        <result property="departure" column="departure"/>
+    </resultMap>
+
+    <resultMap id="accommodationResultMap" type="entity.AccommodationEntity">
+        <id property="accommodationId" column="accommodation_id"/>
+        <result property="accommodation" column="accommodation"/>
+        <result property="checkIn" column="check_in"/>
+        <result property="checkOut" column="check_out"/>
+    </resultMap>
 
     <!--    <update id="">-->
 
     <!--    </update>-->
 
     <delete id="deleteTravel">
-        DELETE FROM travel WHERE travel_id=#{travelId}
+        DELETE FROM toy2.travel WHERE travel_id=#{travelId}
     </delete>
 
 </mapper>

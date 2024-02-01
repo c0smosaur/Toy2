@@ -20,7 +20,6 @@ public class AccommodationRequest {
 
   public AccommodationEntity fromDTO(AccommodationRequest request, int tripId){
     return AccommodationEntity.builder()
-            .accommodationId(request.accommodationId)
             .tripId(tripId)
             .accommodation(request.accommodation)
             .checkIn(request.checkIn)

@@ -17,11 +17,23 @@ import java.util.List;
 public class TripEntity {
 
   private int tripId;
-  private int travelId;
+  private int travel_id;
   private String transportation;
   private String startpoint;
   private String endpoint;
   private LocalDateTime departureTime;
   private LocalDateTime arrivalTime;
-  private List<TravelEntity> travel;
+  private StayEntity stay;
+  private List<AccommodationEntity> accommodation;
+
+  public TripEntity(int travelId, String transportation,
+                    String startpoint, String endpoint,
+                    LocalDateTime departureTime, LocalDateTime arrivalTime){
+    this.travel_id = travelId;
+    this.transportation = transportation;
+    this.startpoint = startpoint;
+    this.endpoint = endpoint;
+    this.departureTime = departureTime;
+    this.arrivalTime = arrivalTime;
+  }
 }

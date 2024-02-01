@@ -1,21 +1,12 @@
 package controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import entity.AccommodationEntity;
-import entity.StayEntity;
-import entity.TravelEntity;
-import entity.TripEntity;
-import lombok.extern.slf4j.Slf4j;
 import model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
-import repository.AccommodationMapper;
-import repository.StayMapper;
-import repository.TravelMapper;
-import repository.TripMapper;
 import service.InsertService;
 
 import java.sql.SQLException;

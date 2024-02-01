@@ -18,7 +18,6 @@ import java.time.LocalDateTime;
 public class TripRequest {
 
   private int tripId;
-  private int travelId;
   private String transportation;
   private String startpoint;
   private String endpoint;
@@ -27,8 +26,7 @@ public class TripRequest {
 
   public TripEntity fromDTO(TripRequest request, int travelId){
     return TripEntity.builder()
-            .tripId(request.tripId)
-            .travelId(travelId)
+            .travel_id(travelId)
             .transportation(request.transportation)
             .startpoint(request.startpoint)
             .endpoint(request.endpoint)

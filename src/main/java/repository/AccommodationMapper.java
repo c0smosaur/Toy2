@@ -1,7 +1,6 @@
 package repository;
 
 import entity.AccommodationEntity;
-import entity.TripEntity;
 
 public interface AccommodationMapper {
 

@@ -1,10 +1,12 @@
 package repository;
 
-
 import entity.TravelEntity;
 
-public interface TravelMapper {
+import java.util.List;
 
-  public int insertTravel(TravelEntity travel);
-  public void deleteTravel(int id);
+public interface TravelMapper {
+    public int insertTravel(TravelEntity travel);
+    List<TravelEntity> getAllTravel();
+    TravelEntity getTravelById(Integer travelId);
+    public void deleteTravel(int id);
 }

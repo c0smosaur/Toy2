@@ -23,7 +23,6 @@ public class TravelRequest {
   public TravelEntity fromDTO(TravelRequest request){
     // dto to entity
     return TravelEntity.builder()
-            .travelId(request.travelId)
             .travelName(request.travelName)
             .departure(request.departure)
             .arrival(request.arrival)
