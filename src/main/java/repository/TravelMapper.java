@@ -8,5 +8,6 @@ public interface TravelMapper {
     public int insertTravel(TravelEntity travel);
     List<TravelEntity> getAllTravel();
     TravelEntity getTravelById(Integer travelId);
+    public int updateTravel(TravelEntity travel);
     public void deleteTravel(int id);
 }

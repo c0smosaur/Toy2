@@ -92,9 +92,16 @@
         <result property="checkOut" column="check_out"/>
     </resultMap>
 
-    <!--    <update id="">-->
-
-    <!--    </update>-->
+    <update id="updateTravel" parameterType="entity.TravelEntity">
+        UPDATE toy2.travel
+        SET
+        travel_name = #{travelName},
+        departure = #{departure},
+        arrival = #{arrival},
+        overseas = #{overseas}
+        WHERE
+        travel_id=#{travelId}
+    </update>
 
     <delete id="deleteTravel">
         DELETE FROM toy2.travel WHERE travel_id=#{travelId}

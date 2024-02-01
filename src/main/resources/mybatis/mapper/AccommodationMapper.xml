@@ -15,9 +15,15 @@
 
     <!--    </select>-->
 
-    <!--    <update id="">-->
-
-    <!--    </update>-->
+    <update id="updateAccommodation" parameterType="map">
+        update toy2.accommodation
+        SET
+        accommodation = #{request.accommodation},
+        check_in = #{request.checkIn},
+        check_out = #{request.checkOut}
+        WHERE
+        accommodation_id=#{accommodationId}
+    </update>
 
     <delete id="deleteAccommodation">
         DELETE FROM toy2.accommodation WHERE accommodation_id=#{accommodationId}
