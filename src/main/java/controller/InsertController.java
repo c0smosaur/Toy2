@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/add")
+@RequestMapping("/insert")
 public class InsertController {
 
   @Autowired
@@ -50,7 +50,7 @@ public class InsertController {
   }
 
   // 여정(숙박, 단수) 입력
-  @PostMapping("/accommo/{tripId}")
+  @PostMapping("/accommodation/{tripId}")
   public ResponseEntity insertAccommo(@RequestBody AccommodationRequest request,
                            @PathVariable(name="tripId") int tripId) throws Exception{
     int count = service.insertAccommodation(request, tripId);
@@ -59,7 +59,7 @@ public class InsertController {
   }
 
   // 여정(숙박, 복수) 입력
-  @PostMapping("/accommo-list/{tripId}")
+  @PostMapping("/accommodation-list/{tripId}")
   public ResponseEntity insertAccommoList(@RequestBody List<AccommodationRequest> requests,
                                           @PathVariable(name="tripId") int tripId) throws Exception{
     int count = 0;

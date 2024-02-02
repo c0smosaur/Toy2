@@ -30,7 +30,7 @@ public class UpdateController {
     return ResponseEntity.ok(response);
   }
 
-  @PutMapping("/accommo/{accommodationId}")
+  @PutMapping("/accommodation/{accommodationId}")
   public ResponseEntity updateAccommo(@RequestBody AccommodationRequest request,
                                       @PathVariable(name = "accommodationId") int accommodationId) throws Exception {
     service.updateAccommodation(request, accommodationId);
