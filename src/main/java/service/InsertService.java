@@ -28,29 +28,34 @@ public class InsertService {
   private AccommodationMapper accMapper;
   @Autowired
   private StayMapper stayMapper;
-  ObjectMapper objectMapper = new ObjectMapper();
 
   public int insertTravel(TravelRequest request) throws Exception{
-    objectMapper.registerModule(new JavaTimeModule());
-    TravelEntity entity = request.fromDTO(request);
-    return travelMapper.insertTravel(entity);
+      if (!request.getTravelName().isBlank()&&
+              !request.getOverseas().isBlank()) {
+        TravelEntity entity = request.fromDTO(request);
+        return travelMapper.insertTravel(entity);
+      } else throw new IllegalArgumentException();
   }
 
   public int insertTrip(TripRequest request, int travelId) throws Exception{
-    objectMapper.registerModule(new JavaTimeModule());
-    TripEntity entity = request.fromDTO(request, travelId);
-    return tripMapper.insertTrip(entity);
+    if (!request.getEndpoint().isBlank()&&
+            !request.getTransportation().isBlank()&&
+            !request.getEndpoint().isBlank()) {
+      TripEntity entity = request.fromDTO(request, travelId);
+      return tripMapper.insertTrip(entity);
+    } else throw new IllegalArgumentException();
   }
 
   public int insertAccommodation(AccommodationRequest request, int tripId) throws Exception{
-    objectMapper.registerModule(new JavaTimeModule());
-    AccommodationEntity entity = request.fromDTO(request, tripId);
-    return accMapper.insertAccommodation(entity);
+    if (!request.getAccommodation().isBlank()){
+      AccommodationEntity entity = request.fromDTO(request, tripId);
+      return accMapper.insertAccommodation(entity);
+    } else throw new IllegalArgumentException();
   }
   public int insertStay(StayRequest request, int tripId) throws Exception{
-    objectMapper.registerModule(new JavaTimeModule());
-    StayEntity entity = request.fromDTO(request, tripId);
-    return stayMapper.insertStay(entity);
+    if (!request.getAddress().isBlank()){
+      StayEntity entity = request.fromDTO(request, tripId);
+      return stayMapper.insertStay(entity);
+    } else throw new IllegalArgumentException();
   }
-
 }

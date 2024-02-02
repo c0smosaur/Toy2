@@ -11,13 +11,15 @@
         (#{tripId}, #{address}, #{arrival}, #{departure})
     </insert>
 
-    <!--    <select id="">-->
-
-    <!--    </select>-->
-
-    <!--    <update id="">-->
-
-    <!--    </update>-->
+    <update id="updateStay" parameterType="map">
+        UPDATE toy2.stay
+        SET
+        address = #{request.address},
+        arrival = #{request.arrival},
+        departure = #{request.departure}
+        WHERE
+        stay_id=#{stayId}
+    </update>
 
     <delete id="deleteStay">
         DELETE FROM toy2.stay WHERE stay_id=#{stayId}

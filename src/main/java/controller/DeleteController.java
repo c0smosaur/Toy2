@@ -1,50 +1,58 @@
 package controller;
 
+import model.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import repository.AccommodationMapper;
 import repository.StayMapper;
 import repository.TravelMapper;
 import repository.TripMapper;
-import service.TravelService;
+import service.DeleteService;
 
 @RestController
+@RequestMapping("/delete")
 public class DeleteController {
     @Autowired
-    private TravelMapper travelMapper;
-    @Autowired
-    private TripMapper tripMapper;
-    @Autowired
-    private AccommodationMapper accommodationMapper;
-    @Autowired
-    private StayMapper stayMapper;
+    private DeleteService service;
 
-    @RequestMapping("/delete")
-    public String delete(){
-        return "Hello from delete!";
+    @DeleteMapping("/travel/{id}")
+    public ResponseEntity<Result<Object>>
+    deleteTravel(@PathVariable int id) throws Exception {
+        service.deleteTravel(id);
+        Result<Object> response = successBuilder("Travel has been deleted!");
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @DeleteMapping("/delete/travel/{id}")
-    public String deleteTravel(@PathVariable int id) {
-        travelMapper.deleteTravel(id);
-        return "Travel has been deleted!";
+    @DeleteMapping("/trip/{id}")
+    public ResponseEntity<Result<Object>>
+    deleteTrip(@PathVariable int id) throws Exception {
+        service.deleteTrip(id);
+        Result<Object> response = successBuilder("Trip has been deleted!");
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+    @DeleteMapping("/accommodation/{id}")
+    public ResponseEntity<Result<Object>>
+    deleteAccommodation(@PathVariable int id) throws Exception {
+        service.deleteAccommodation(id);
+        Result<Object> response = successBuilder("Accommodation has been deleted!");
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @DeleteMapping("/delete/trip/{id}")
-    public String deleteTrip(@PathVariable int id) {
-        tripMapper.deleteTrip(id);
-        return "Trip has been deleted!";
-    }
-    @DeleteMapping("/delete/accommodation/{id}")
-    public String deleteAccommodation(@PathVariable int id) {
-        accommodationMapper.deleteAccommodation(id);
-        return "Accommodation has been deleted!";
+    @DeleteMapping("/stay/{id}")
+    public ResponseEntity<Result<Object>>
+    deleteStay(@PathVariable int id) throws Exception {
+        service.deleteStay(id);
+        Result<Object> response = successBuilder("Stay has been deleted!");
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @DeleteMapping("/delete/stay/{id}")
-    public String deleteStay(@PathVariable int id) {
-        stayMapper.deleteStay(id);
-        return "Stay has been deleted!";
+    public Result<Object> successBuilder(Object obj){
+        return Result.builder()
+                .resultCode(""+ HttpStatus.OK.value())
+                .resultMessage(HttpStatus.OK.getReasonPhrase())
+                .data(obj)
+                .build();
     }
 }

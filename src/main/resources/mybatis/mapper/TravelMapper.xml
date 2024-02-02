@@ -93,12 +93,19 @@
         <result property="departure" column="departure"/>
     </resultMap>
 
-    <!--    <update id="">-->
-
-    <!--    </update>-->
+    <update id="updateTravel" parameterType="map">
+        UPDATE toy2.travel
+        SET
+        travel_name = #{request.travelName},
+        departure = #{request.departure},
+        arrival = #{request.arrival},
+        overseas = #{request.overseas}
+        WHERE
+        travel_id=#{travelId}
+    </update>
 
     <delete id="deleteTravel">
-        DELETE FROM travel WHERE travel_id=#{travelId}
+        DELETE FROM toy2.travel WHERE travel_id=#{travelId}
     </delete>
 
 </mapper>

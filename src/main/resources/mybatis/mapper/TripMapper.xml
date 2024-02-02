@@ -67,6 +67,17 @@
     <!--    <update id="">-->
 
     <!--    </update>-->
+    <update id="updateTrip" parameterType="map">
+        UPDATE toy2.trip
+        SET
+        transportation = #{request.transportation},
+        startpoint = #{request.startpoint},
+        endpoint = #{request.endpoint},
+        departure_time = #{request.departureTime},
+        arrival_time = #{request.arrivalTime}
+        WHERE
+        trip_id=#{tripId}
+    </update>
 
     <delete id="deleteTrip">
         DELETE FROM toy2.trip WHERE trip_id=#{tripId}

@@ -38,7 +38,6 @@ public class InsertController {
 
   // 여정(이동, 복수) 입력
   // request 는 trip_id, travel_id가 0으로 들어가서 db 안에서 AI로 받음
-  // 0으로 반환되는데 좀 바꿔볼 필요가 있을 듯, 제거하거나
   @PostMapping("/trip-list/{travelId}")
   public ResponseEntity insertTripList(@RequestBody List<TripRequest> requests,
                                        @PathVariable(name="travelId") int travelId) throws Exception{
@@ -51,7 +50,7 @@ public class InsertController {
   }
 
   // 여정(숙박, 단수) 입력
-  @PostMapping("/accommo/{tripId}")
+  @PostMapping("/accommodation/{tripId}")
   public ResponseEntity insertAccommo(@RequestBody AccommodationRequest request,
                            @PathVariable(name="tripId") int tripId) throws Exception{
     int count = service.insertAccommodation(request, tripId);
@@ -60,7 +59,7 @@ public class InsertController {
   }
 
   // 여정(숙박, 복수) 입력
-  @PostMapping("/accommo-list/{tripId}")
+  @PostMapping("/accommodation-list/{tripId}")
   public ResponseEntity insertAccommoList(@RequestBody List<AccommodationRequest> requests,
                                           @PathVariable(name="tripId") int tripId) throws Exception{
     int count = 0;
