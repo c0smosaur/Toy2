@@ -8,18 +8,78 @@
         INSERT INTO toy2.trip
         (travel_id, transportation, startpoint, endpoint, departure_time, arrival_time)
         VALUES
-        (#{travelId}, #{transportation}, #{startpoint}, #{endpoint}, #{departureTime}, #{arrivalTime})
+        (#{travel_id}, #{transportation}, #{startpoint}, #{endpoint}, #{departureTime}, #{arrivalTime})
     </insert>
 
-    <!--    <select id="">-->
+    <select id="getAllTrip" resultMap="tripResultMap">
+        SELECT
+        t.*,
+        s.*,
+        ac.*
+        FROM
+        trip t
+        LEFT JOIN stay s ON t.trip_id = s.trip_id
+        LEFT JOIN accommodation ac ON t.trip_id = ac. trip_id
+        ORDER BY t.trip_id, s.stay_id;
+    </select>
+
+    <select id="getTrip" parameterType="entity.TripEntity" resultMap="tripResultMap">
+        SELECT
+        t.*,
+        s.*,
+        ac.*
+        FROM
+        trip t
+        LEFT JOIN stay s ON t.trip_id = s.trip_id
+        LEFT JOIN accommodation ac ON t.trip_id = ac. trip_id
+        WHERE t.trip_id = #{tripId};
+    </select>
+
+    <resultMap id="tripResultMap" type="entity.TripEntity">
+        <id property="tripId" column="trip_id"/>
+        <result property="transportation" column="transportation"/>
+        <result property="startpoint" column="startpoint"/>
+        <result property="endpoint" column="endpoint"/>
+        <result property="departureTime" column="departure_time"/>
+        <result property="arrivalTime" column="arrival_time"/>
+
+        <association property="accommodation" javaType="entity.AccommodationEntity" resultMap="accommodationResultMap"/>
+        <collection property="stay" ofType="entity.StayEntity" resultMap="stayResultMap"/>
+    </resultMap>
+
+    <resultMap id="accommodationResultMap" type="entity.AccommodationEntity">
+        <id property="accommodationId" column="accommodation_id"/>
+        <result property="accommodation" column="accommodation"/>
+        <result property="checkIn" column="check_in"/>
+        <result property="checkOut" column="check_out"/>
+    </resultMap>
+
+    <resultMap id="stayResultMap" type="entity.StayEntity">
+        <id property="stayId" column="stay_id"/>
+        <result property="address" column="address"/>
+        <result property="arrival" column="arrival"/>
+        <result property="departure" column="departure"/>
+    </resultMap>
+
 
     <!--    </select>-->
 
     <!--    <update id="">-->
 
     <!--    </update>-->
+    <update id="updateTrip" parameterType="map">
+        UPDATE toy2.trip
+        SET
+        transportation = #{request.transportation},
+        startpoint = #{request.startpoint},
+        endpoint = #{request.endpoint},
+        departure_time = #{request.departureTime},
+        arrival_time = #{request.arrivalTime}
+        WHERE
+        trip_id=#{tripId}
+    </update>
 
     <delete id="deleteTrip">
-        DELETE FROM trip WHERE trip_id=#{tripId}
+        DELETE FROM toy2.trip WHERE trip_id=#{tripId}
     </delete>
 </mapper>

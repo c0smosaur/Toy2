@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.sql.SQLException;
+import java.util.NoSuchElementException;
 
 @Slf4j
-@RestControllerAdvice(basePackages = {"controller"})
+@RestControllerAdvice
 public class ApiExceptionHandler {
 
     // 예외처리
+    // sql문 오류
     @ExceptionHandler(value = {SQLException.class})
     public ResponseEntity sqlExceptionHandler(SQLException e){
 //        log.error("SQL Exception Handler : ");
@@ -27,7 +29,7 @@ public class ApiExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
-    // 날짜 데이터 잘못 입력시
+    // 날짜 데이터 오입력
     @ExceptionHandler(value = {HttpMessageNotReadableException.class})
     public ResponseEntity dataParsingExceptionHandler(HttpMessageNotReadableException e){
 //        log.error("Data Parsing Exception Handler : ");
@@ -39,8 +41,8 @@ public class ApiExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
-    // 없는 데이터 참조 시
-    // 필수 데이터가 공백으로 들어올 시
+    // 없는 데이터 참조하여 입력
+    // 필수 데이터 미입력
     @ExceptionHandler(value = {DataIntegrityViolationException.class})
     public ResponseEntity dataIntegrityViolationExceptionHandler(DataIntegrityViolationException e){
 //        log.error("Data Integrity Violation Exception Handler : ");
@@ -52,6 +54,41 @@ public class ApiExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
+    // 필수 데이터가 공백
+    @ExceptionHandler(value = {IllegalArgumentException.class})
+    public ResponseEntity illegalArgumentExceptionHandler(IllegalArgumentException e){
+        e.printStackTrace();
+        Result<Object> response = Result.builder()
+                .resultCode(""+ HttpStatus.BAD_REQUEST.value())
+                .resultMessage("Invalid input, data cannot be blank")
+                .build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    // 없는 여행 정보를 조회
+    @ExceptionHandler(value = {NullPointerException.class})
+    public ResponseEntity nullPointerExceptionHandler(NullPointerException e){
+//        log.error("Null Pointer Exception Handler : ");
+    e.printStackTrace();
+    Result<Object> response = Result.builder()
+            .resultCode(""+ HttpStatus.BAD_REQUEST.value())
+            .resultMessage("Cannot view data that does not exist")
+            .build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    // 없는 여행 정보를 삭제
+    @ExceptionHandler(value = {NoSuchElementException.class})
+    public ResponseEntity noSuchElementExceptionHandler(NoSuchElementException e){
+        e.printStackTrace();
+        Result<Object> response = Result.builder()
+                .resultCode(""+ HttpStatus.BAD_REQUEST.value())
+                .resultMessage("Cannot delete data that does not exist")
+                .build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    // 그 외의 예외
     @ExceptionHandler(value = {Exception.class})
     public ResponseEntity exception(Exception e){
 //        log.error("Exception Handler : ");

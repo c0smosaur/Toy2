@@ -1,54 +1,58 @@
 package controller;
 
+import model.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import repository.AccommodationMapper;
 import repository.StayMapper;
 import repository.TravelMapper;
 import repository.TripMapper;
-import service.TravelService;
+import service.DeleteService;
 
 @RestController
+@RequestMapping("/api/v1")
 public class DeleteController {
+    @Autowired
+    private DeleteService service;
 
-    @Autowired
-    private TravelMapper travelMapper;
-    @Autowired
-    private TripMapper tripMapper;
-    @Autowired
-    private AccommodationMapper accommodationMapper;
-    @Autowired
-    private StayMapper stayMapper;
-
-    @RequestMapping("/delete")
-    public String delete(){
-        return "Hello from delete!";
+    @DeleteMapping("/travel/{id}")
+    public ResponseEntity<Result<Object>>
+    deleteTravel(@PathVariable int id) throws Exception {
+        service.deleteTravel(id);
+        Result<Object> response = successBuilder("Travel has been deleted!");
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @GetMapping("/delete/travel/{id}")
-    public String deleteTravel(@PathVariable int id) {
-        travelMapper.deleteTravel(id);
-        return "Travel이 삭제되었습니다!";
+    @DeleteMapping("/trip/{id}")
+    public ResponseEntity<Result<Object>>
+    deleteTrip(@PathVariable int id) throws Exception {
+        service.deleteTrip(id);
+        Result<Object> response = successBuilder("Trip has been deleted!");
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+    @DeleteMapping("/accommodation/{id}")
+    public ResponseEntity<Result<Object>>
+    deleteAccommodation(@PathVariable int id) throws Exception {
+        service.deleteAccommodation(id);
+        Result<Object> response = successBuilder("Accommodation has been deleted!");
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @GetMapping("/delete/trip/{id}")
-    public String deleteTrip(@PathVariable int id) {
-        tripMapper.deleteTrip(id);
-        return "Trip이 삭제되었습니다!";
-    }
-    @GetMapping("/delete/accommodation/{id}")
-    public String deleteAccommodation(@PathVariable int id) {
-        accommodationMapper.deleteAccommodation(id);
-        return "Accommodation이 삭제되었습니다!";
+    @DeleteMapping("/stay/{id}")
+    public ResponseEntity<Result<Object>>
+    deleteStay(@PathVariable int id) throws Exception {
+        service.deleteStay(id);
+        Result<Object> response = successBuilder("Stay has been deleted!");
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @GetMapping("/delete/stay/{id}")
-    public String deleteStay(@PathVariable int id) {
-        stayMapper.deleteStay(id);
-        return "Stay가 삭제되었습니다!";
+    public Result<Object> successBuilder(Object obj){
+        return Result.builder()
+                .resultCode(""+ HttpStatus.OK.value())
+                .resultMessage(HttpStatus.OK.getReasonPhrase())
+                .data(obj)
+                .build();
     }
 }

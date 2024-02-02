@@ -26,16 +26,21 @@ public class TripResponse {
     private String endpoint;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
-    private StayResponse stay;
-    private List<AccommodationResponse> accommodation = new ArrayList<>();
+    private AccommodationResponse accommodation;
+    private List<StayResponse> stay = new ArrayList<>();
 
     public static TripResponse fromEntity(TripEntity tripEntity) {
 
-        List<AccommodationResponse> responses = Collections.emptyList();
-        if (tripEntity.getAccommodation() != null) {
-            responses = tripEntity.getAccommodation().stream()
-                    .map(AccommodationResponse::fromEntity)
+        List<StayResponse> responses = Collections.emptyList();
+        if (tripEntity.getStay() != null) {
+            responses = tripEntity.getStay().stream()
+                    .map(StayResponse::fromEntity)
                     .collect(Collectors.toList());
+        }
+
+        AccommodationResponse accommodationResponse = null;
+        if (tripEntity.getAccommodation() != null) {
+            accommodationResponse = AccommodationResponse.fromEntity(tripEntity.getAccommodation());
         }
 
         return TripResponse.builder()
@@ -45,9 +50,8 @@ public class TripResponse {
                 .endpoint(tripEntity.getEndpoint())
                 .departureTime(tripEntity.getDepartureTime())
                 .arrivalTime(tripEntity.getArrivalTime())
-                .stay(StayResponse.fromEntity(tripEntity.getStay()))
-                .accommodation(responses)
+                .stay(responses)
+                .accommodation(accommodationResponse)
                 .build();
     }
-
 }

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class AccommodationResponse {
 
-    private int accommodationId;
+    private Integer accommodationId;
     private String accommodation;
     private LocalDateTime checkIn;
     private LocalDateTime checkOut;
@@ -29,4 +29,5 @@ public class AccommodationResponse {
                 .checkOut(accommodationEntity.getCheckOut())
                 .build();
     }
+
 }

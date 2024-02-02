@@ -21,4 +21,13 @@ public class AccommodationEntity {
   private String accommodation;
   private LocalDateTime checkIn;
   private LocalDateTime checkOut;
+
+//  public AccommodationEntity(int accommodationId, int tripId, String accommodation,
+//                             LocalDateTime checkIn, LocalDateTime checkOut){
+//    this.accommodationId = accommodationId;
+//    this.tripId = tripId;
+//    this.accommodation = accommodation;
+//    this.checkIn = checkIn;
+//    this.checkOut = checkOut;
+//  }
 }
