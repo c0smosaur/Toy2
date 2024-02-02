@@ -33,29 +33,40 @@ public class UpdateService {
   private StayMapper stayMapper;
 
   public int updateTravel(TravelRequest request, int travelId) throws Exception {
-    TravelEntity entity = request.fromDTO(request);
-    entity.setTravelId(travelId);
-    return travelMapper.updateTravel(entity);
+    if (!request.getTravelName().isBlank()&&!request.getOverseas().isBlank()){
+      Map map = new HashMap();
+      map.put("request", request);
+      map.put("travelId", travelId);
+      return travelMapper.updateTravel(map);
+    } else throw new IllegalArgumentException();
   }
 
   public int updateTrip(TripRequest request, int tripId) throws Exception {
-    Map map = new HashMap();
-    map.put("request", request);
-    map.put("tripId",tripId);
-    return tripMapper.updateTrip(map);
+    if (!request.getEndpoint().isBlank()&&
+            !request.getTransportation().isBlank()&&
+            !request.getEndpoint().isBlank()) {
+      Map map = new HashMap();
+      map.put("request", request);
+      map.put("tripId", tripId);
+      return tripMapper.updateTrip(map);
+    } else throw new IllegalArgumentException();
   }
 
   public int updateAccommodation(AccommodationRequest request, int accommodationId) throws Exception {
-    Map map = new HashMap();
-    map.put("request",request);
-    map.put("accommodationId", accommodationId);
-    return accMapper.updateAccommodation(map);
+    if (!request.getAccommodation().isBlank()) {
+      Map map = new HashMap();
+      map.put("request", request);
+      map.put("accommodationId", accommodationId);
+      return accMapper.updateAccommodation(map);
+    } else throw new IllegalArgumentException();
   }
 
   public int updateStay(StayRequest request, int stayId) throws Exception {
-    Map map = new HashMap();
-    map.put("request", request);
-    map.put("stayId", stayId);
-    return stayMapper.updateStay(map);
+    if (!request.getAddress().isBlank()) {
+      Map map = new HashMap();
+      map.put("request", request);
+      map.put("stayId", stayId);
+      return stayMapper.updateStay(map);
+    } else throw new IllegalArgumentException();
   }
 }

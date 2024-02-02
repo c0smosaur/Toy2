@@ -92,13 +92,13 @@
         <result property="checkOut" column="check_out"/>
     </resultMap>
 
-    <update id="updateTravel" parameterType="entity.TravelEntity">
+    <update id="updateTravel" parameterType="map">
         UPDATE toy2.travel
         SET
-        travel_name = #{travelName},
-        departure = #{departure},
-        arrival = #{arrival},
-        overseas = #{overseas}
+        travel_name = #{request.travelName},
+        departure = #{request.departure},
+        arrival = #{request.arrival},
+        overseas = #{request.overseas}
         WHERE
         travel_id=#{travelId}
     </update>
