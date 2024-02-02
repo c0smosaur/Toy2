@@ -31,7 +31,7 @@ public class SelectController {
     @GetMapping("/travel")
     public List<TravelResponse> getAllTravel() {
 
-        log.info("select getAllTrip");
+        log.info("select getAllTravel");
 
         return selectService.getAllTravel()
                 .stream()
@@ -48,8 +48,14 @@ public class SelectController {
     }
 
     @GetMapping("/trip")
-    public TripResponse getAllTrip() {
+    public List<TripResponse> getAllTrip() {
 
-        return  TripResponse.fromEntity(selectService.getAllTrip());
+        return  selectService.getAllTrip().stream().map(TripResponse::fromEntity).collect(Collectors.toList());
+    }
+
+    @GetMapping("/trip/{tripId}")
+    public TripResponse getTrip(@PathVariable("tripId") Integer tripId) {
+
+        return TripResponse.fromEntity(selectService.getTrip(tripId));
     }
 }

@@ -23,13 +23,12 @@ public class TripEntity {
   private String endpoint;
   private LocalDateTime departureTime;
   private LocalDateTime arrivalTime;
-  private StayEntity stay;
-  private List<AccommodationEntity> accommodation;
+  private List<StayEntity> stay;
+  private AccommodationEntity accommodation;
 
-  public TripEntity(int travelId, String transportation,
+  public TripEntity(String transportation,
                     String startpoint, String endpoint,
                     LocalDateTime departureTime, LocalDateTime arrivalTime){
-    this.travel_id = travelId;
     this.transportation = transportation;
     this.startpoint = startpoint;
     this.endpoint = endpoint;

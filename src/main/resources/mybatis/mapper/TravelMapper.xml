@@ -20,9 +20,9 @@
         FROM
         travel tv
         LEFT JOIN trip t ON tv.travel_id = t.travel_id
-        LEFT JOIN stay s ON t.trip_id = s.trip_id
         LEFT JOIN accommodation ac ON t.trip_id = ac.trip_id
-        ORDER BY tv.travel_id, ac.accommodation_id;
+        LEFT JOIN stay s ON t.trip_id = s.trip_id
+        ORDER BY tv.travel_id, s.stay_id;
     </select>
 
     <select id="getTravelById" parameterType="entity.TravelEntity" resultMap="travelWithTripResultMap">
@@ -34,8 +34,8 @@
         FROM
         travel tv
         LEFT JOIN trip t ON tv.travel_id = t.travel_id
-        LEFT JOIN stay s ON t.trip_id = s.trip_id
         LEFT JOIN accommodation ac ON t.trip_id = ac.trip_id
+        LEFT JOIN stay s ON t.trip_id = s.trip_id
         WHERE tv.travel_id = #{travelId};
     </select>
 
@@ -75,15 +75,8 @@
         <result property="departureTime" column="departure_time"/>
         <result property="arrivalTime" column="arrival_time"/>
 
-        <association property="stay" javaType="entity.StayEntity" resultMap="stayResultMap"/>
-        <collection property="accommodation" ofType="entity.AccommodationEntity" resultMap="accommodationResultMap"/>
-    </resultMap>
-
-    <resultMap id="stayResultMap" type="entity.StayEntity">
-        <id property="stayId" column="stay_id"/>
-        <result property="address" column="address"/>
-        <result property="arrival" column="arrival"/>
-        <result property="departure" column="departure"/>
+        <association property="accommodation" javaType="entity.AccommodationEntity" resultMap="accommodationResultMap"/>
+        <collection property="stay" ofType="entity.StayEntity" resultMap="stayResultMap"/>
     </resultMap>
 
     <resultMap id="accommodationResultMap" type="entity.AccommodationEntity">
@@ -91,6 +84,13 @@
         <result property="accommodation" column="accommodation"/>
         <result property="checkIn" column="check_in"/>
         <result property="checkOut" column="check_out"/>
+    </resultMap>
+
+    <resultMap id="stayResultMap" type="entity.StayEntity">
+        <id property="stayId" column="stay_id"/>
+        <result property="address" column="address"/>
+        <result property="arrival" column="arrival"/>
+        <result property="departure" column="departure"/>
     </resultMap>
 
     <!--    <update id="">-->

@@ -39,10 +39,17 @@ public class SelectService {
     }
 
     @Transactional
-    public TripEntity getAllTrip() {
+    public List<TripEntity> getAllTrip() {
 
         List<TripEntity> allTrip = tripMapper.getAllTrip();
 
-        return null;
+        return allTrip;
+    }
+
+    @Transactional
+    public TripEntity getTrip(Integer tripId) {
+
+        return tripMapper.getTrip(tripId)
+                .orElseThrow(() -> new DataIntegrityViolationException("데이터가 없어요"));
     }
 }

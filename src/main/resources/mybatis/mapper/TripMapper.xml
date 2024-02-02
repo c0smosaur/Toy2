@@ -11,11 +11,57 @@
         (#{travel_id}, #{transportation}, #{startpoint}, #{endpoint}, #{departureTime}, #{arrivalTime})
     </insert>
 
-    <!--    <select id="">-->
-<!--    <select id="getAllTrip" resultMap="">-->
+    <select id="getAllTrip" resultMap="tripResultMap">
+        SELECT
+        t.*,
+        s.*,
+        ac.*
+        FROM
+        trip t
+        LEFT JOIN stay s ON t.trip_id = s.trip_id
+        LEFT JOIN accommodation ac ON t.trip_id = ac. trip_id
+        ORDER BY t.trip_id, s.stay_id;
+    </select>
+
+    <select id="getTrip" parameterType="entity.TripEntity" resultMap="tripResultMap">
+        SELECT
+        t.*,
+        s.*,
+        ac.*
+        FROM
+        trip t
+        LEFT JOIN stay s ON t.trip_id = s.trip_id
+        LEFT JOIN accommodation ac ON t.trip_id = ac. trip_id
+        WHERE t.trip_id = #{tripId};
+    </select>
+
+    <resultMap id="tripResultMap" type="entity.TripEntity">
+        <id property="tripId" column="trip_id"/>
+        <result property="transportation" column="transportation"/>
+        <result property="startpoint" column="startpoint"/>
+        <result property="endpoint" column="endpoint"/>
+        <result property="departureTime" column="departure_time"/>
+        <result property="arrivalTime" column="arrival_time"/>
+
+        <association property="accommodation" javaType="entity.AccommodationEntity" resultMap="accommodationResultMap"/>
+        <collection property="stay" ofType="entity.StayEntity" resultMap="stayResultMap"/>
+    </resultMap>
+
+    <resultMap id="accommodationResultMap" type="entity.AccommodationEntity">
+        <id property="accommodationId" column="accommodation_id"/>
+        <result property="accommodation" column="accommodation"/>
+        <result property="checkIn" column="check_in"/>
+        <result property="checkOut" column="check_out"/>
+    </resultMap>
+
+    <resultMap id="stayResultMap" type="entity.StayEntity">
+        <id property="stayId" column="stay_id"/>
+        <result property="address" column="address"/>
+        <result property="arrival" column="arrival"/>
+        <result property="departure" column="departure"/>
+    </resultMap>
 
 
-<!--    </select>-->
     <!--    </select>-->
 
     <!--    <update id="">-->
