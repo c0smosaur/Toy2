@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/insert")
+@RequestMapping("/api/v1")
 public class InsertController {
 
   @Autowired

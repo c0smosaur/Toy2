@@ -12,7 +12,7 @@ import repository.TripMapper;
 import service.DeleteService;
 
 @RestController
-@RequestMapping("/delete")
+@RequestMapping("/api/v1")
 public class DeleteController {
     @Autowired
     private DeleteService service;

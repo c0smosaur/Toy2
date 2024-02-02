@@ -3,12 +3,8 @@ package service;
 import entity.TravelEntity;
 import entity.TripEntity;
 import lombok.AllArgsConstructor;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import repository.AccommodationMapper;
-import repository.StayMapper;
 import repository.TravelMapper;
 import repository.TripMapper;
 
@@ -18,8 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 public class SelectService {
 
-    private AccommodationMapper accommodationMapper;
-    private StayMapper stayMapper;
     private TravelMapper travelMapper;
     private TripMapper tripMapper;
 
@@ -36,7 +30,7 @@ public class SelectService {
     public TravelEntity getTravelById(Integer travelId) {
 
         return travelMapper.getTravelById(travelId)
-                .orElseThrow(() -> new DataIntegrityViolationException("데이터가 없어요"));
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     @Transactional
@@ -51,6 +45,6 @@ public class SelectService {
     public TripEntity getTrip(Integer tripId) {
 
         return tripMapper.getTrip(tripId)
-                .orElseThrow(() -> new DataIntegrityViolationException("데이터가 없어요"));
+                .orElseThrow(IllegalArgumentException::new);
     }
 }
