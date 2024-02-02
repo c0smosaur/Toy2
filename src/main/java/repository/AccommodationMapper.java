@@ -8,5 +8,5 @@ public interface AccommodationMapper {
 
   public int insertAccommodation(AccommodationEntity accommodation);
   public int updateAccommodation(Map map);
-  public void deleteAccommodation(int id);
+  public int deleteAccommodation(int id);
 }

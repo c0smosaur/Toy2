@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.sql.SQLException;
+import java.util.NoSuchElementException;
 
 @Slf4j
 @RestControllerAdvice
@@ -71,8 +72,19 @@ public class ApiExceptionHandler {
     e.printStackTrace();
     Result<Object> response = Result.builder()
             .resultCode(""+ HttpStatus.BAD_REQUEST.value())
-            .resultMessage("Data doesn't exist")
+            .resultMessage("Cannot view data that does not exist")
             .build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    // 없는 여행 정보를 삭제
+    @ExceptionHandler(value = {NoSuchElementException.class})
+    public ResponseEntity noSuchElementExceptionHandler(NoSuchElementException e){
+        e.printStackTrace();
+        Result<Object> response = Result.builder()
+                .resultCode(""+ HttpStatus.BAD_REQUEST.value())
+                .resultMessage("Cannot delete data that does not exist")
+                .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 

@@ -10,5 +10,5 @@ public interface TravelMapper {
     List<TravelEntity> getAllTravel();
     TravelEntity getTravelById(Integer travelId);
     public int updateTravel(Map map);
-    public void deleteTravel(int id);
+    public int deleteTravel(int id);
 }

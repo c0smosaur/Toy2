@@ -8,5 +8,5 @@ public interface TripMapper {
   public int insertTrip(TripEntity trip);
 //  public int updateTrip(TripEntity trip);
   public int updateTrip(Map map);
-  void deleteTrip(int id);
+  public int deleteTrip(int id);
 }

@@ -7,6 +7,8 @@ import repository.StayMapper;
 import repository.TravelMapper;
 import repository.TripMapper;
 
+import java.util.NoSuchElementException;
+
 @Service
 public class DeleteService {
   @Autowired
@@ -17,19 +19,27 @@ public class DeleteService {
   private TravelMapper travelMapper;
   @Autowired
   private TripMapper tripMapper;
-  public void deleteTravel(int travelId) {
-    travelMapper.deleteTravel(travelId);
+  public int deleteTravel(int travelId) throws Exception {
+    int count = travelMapper.deleteTravel(travelId);
+    if (count==1) return count;
+    else throw new NoSuchElementException();
   }
 
-  public void deleteTrip(int tripId) {
-    tripMapper.deleteTrip(tripId);
+  public int deleteTrip(int tripId) throws Exception {
+    int count = tripMapper.deleteTrip(tripId);
+    if (count==1) return count;
+    else throw new NoSuchElementException();
   }
 
-  public void deleteAccommodation(int accommodationId) {
-    accommodationMapper.deleteAccommodation(accommodationId);
+  public int deleteAccommodation(int accommodationId) throws Exception {
+    int count = accommodationMapper.deleteAccommodation(accommodationId);
+    if (count==1) return count;
+    else throw new NoSuchElementException();
   }
 
-  public void deleteStay(int stayId) {
-    stayMapper.deleteStay(stayId);
+  public int deleteStay(int stayId) throws Exception {
+    int count = stayMapper.deleteStay(stayId);
+    if (count==1) return count;
+    else throw new NoSuchElementException();
   }
 }
